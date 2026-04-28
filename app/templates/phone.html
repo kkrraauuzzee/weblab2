@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-5">Проверка номера телефона</h1>
+
+<p>
+    Введите номер телефона. Допускаются цифры, пробелы, круглые скобки, дефисы, точки и символ +.
+</p>
+
+<form method="post" class="my-3" novalidate>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Номер телефона</label>
+        <input type="text" class="form-control {% if error %}is-invalid{% endif %}" id="phone" name="phone" value="{{ phone }}" placeholder="+7 (123) 456-75-90">
+        {% if error %}
+            <div class="invalid-feedback">
+                {{ error }}
+            </div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Проверить</button>
+</form>
+
+{% if formatted_phone %}
+    <p class="mt-4">
+        Номер телефона в формате 8-***-***-**-**: <span class="fw-bold">{{ formatted_phone }}</span>
+    </p>
+{% endif %}
+
+<h2 class="mt-5">Примеры допустимого ввода</h2>
+
+<ul class="my-3">
+    <li>+7 (123) 456-75-90</li>
+    <li>8(123)4567590</li>
+    <li>123.456.75.90</li>
+</ul>
+{% endblock %}

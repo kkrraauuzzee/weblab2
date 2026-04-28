@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-4">Форма авторизации</h1>
+
+<p>
+    После отправки формы введённые данные выводятся на этой же странице.
+</p>
+
+<form method="post" class="my-3">
+    <div class="mb-3">
+        <label for="login" class="form-label">Логин</label>
+        <input type="text" class="form-control" id="login" name="login" placeholder="Введите логин">
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+
+{% if form_data %}
+    <h2 class="mt-5">Параметры формы</h2>
+
+    <table class="table table-bordered table-striped my-3">
+        <thead>
+            <tr>
+                <th>Название поля</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in form_data %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% elif was_submitted %}
+    <p>Форма была отправлена без данных.</p>
+{% endif %}
+{% endblock %}

@@ -36,11 +36,22 @@
                     <p class="mb-2">{{ comment.text }}</p>
 
                     {% if comment.replies %}
-                        <div class="ms-4 mt-3">
+                        <div class="ms-2 mt-3">
                             {% for reply in comment.replies %}
                                 <div class="border rounded p-3 mb-2 bg-light">
                                     <h6 class="mb-1">{{ reply.author }}</h6>
-                                    <p class="mb-0">{{ reply.text }}</p>
+                                    <p class="mb-2">{{ reply.text }}</p>
+
+                                    {% if reply.replies %}
+                                        <div class="ms-3 mt-3">
+                                            {% for reply_reply in reply.replies %}
+                                                <div class="border rounded p-3 mb-2 bg-white">
+                                                    <h6 class="mb-1">{{ reply_reply.author }}</h6>
+                                                    <p class="mb-0">{{ reply_reply.text }}</p>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                             {% endfor %}
                         </div>
